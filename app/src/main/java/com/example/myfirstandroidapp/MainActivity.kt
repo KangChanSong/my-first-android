@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.MaterialTheme
@@ -64,10 +66,13 @@ fun MyAppPreview() {
 @Composable
 fun Greetings(
     modifier: Modifier = Modifier,
-    names: List<String> = listOf("KangChan", "GangGeon")
+    names: List<String> = List(1000) { "$it"}
 ) {
-    Column(modifier = modifier.padding()) {
-        names.forEach { Greeting(name = it) }
+    LazyColumn(modifier = modifier.padding()) {
+        items(items = names) {
+            Greeting(name = it)
+        }
+
     }
 }
 
